@@ -46,7 +46,7 @@ void run_once(ashos_telemetry_t &tlm, const ashos_command_t &cmd) {
 } // namespace ashos
 
 int main() {
-    ashos::ashos_command_t cmd = ashos::default_command();
+    ashos_command_t cmd = ashos::default_command();
     ashos_telemetry_t telemetry{};
     telemetry.life_support.o2_percent = 2050;
     telemetry.life_support.pressure_pa = 101000;

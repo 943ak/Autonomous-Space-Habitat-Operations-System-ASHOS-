@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "[start_all] launching C++ engine" 
-(cd cpp_engine && g++ -std=c++17 -pthread ../c_core/ls_ctrl.c ../c_core/pwr_ctrl.c ../c_core/thermal_ctrl.c ../c_core/watchdog.c engine_main.cpp -o engine && ./engine &) 
+echo "[start_all] building C++ engine"
+(cd cpp_engine && g++ -std=c++17 -pthread ../c_core/ls_ctrl.c ../c_core/pwr_ctrl.c ../c_core/thermal_ctrl.c ../c_core/watchdog.c engine_main.cpp -o engine)
+
+echo "[start_all] launching C++ engine"
+./cpp_engine/engine &
 ENGINE_PID=$!
 
 echo "[start_all] launching Python AI"
