@@ -1,0 +1,11 @@
+{
+  "telemetry": {
+    "pressure_pa": 100200,
+    "o2_percent": 2050,
+    "temperature_c": 2400,
+    "solar_input_w": 1000,
+    "load_w": 6000
+  },
+  "faults": ["comm_drop", "solar_loss"],
+  "expected_response": "switch_to_battery_and_reduce_load"
+}
