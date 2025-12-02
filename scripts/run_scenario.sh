@@ -31,3 +31,6 @@ def mock_sim(scenario):
 
 print(run_trials(mock_sim, 3))
 PYCODE
+
+echo "[scenario] stopping stack"
+./scripts/stop_all.sh

@@ -11,4 +11,4 @@ Full-stack reference implementation for an AI-assisted, safety-first space habit
 - **scripts/**: Orchestration for start-up, scenarios, health checks, and backup/restore.
 - **tests/**: Stubs for unit/integration test suites per language.
 
-Use `scripts/start_all.sh` to build and launch the simulation, AI server, and backend (Maven required for Java).
+Use `scripts/start_all.sh` to build and launch the simulation, AI server, and backend (Maven required for Java). When finished, call `scripts/stop_all.sh` to terminate background services and clear the pid file; logs are written to `logs/`.

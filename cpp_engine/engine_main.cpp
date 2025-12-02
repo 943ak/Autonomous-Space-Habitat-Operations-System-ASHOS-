@@ -1,4 +1,6 @@
+#include <atomic>
 #include <chrono>
+#include <csignal>
 #include <iostream>
 #include <thread>
 
@@ -45,7 +47,16 @@ void run_once(ashos_telemetry_t &tlm, const ashos_command_t &cmd) {
 
 } // namespace ashos
 
+namespace {
+std::atomic<bool> g_running{true};
+
+void handle_signal(int) { g_running = false; }
+} // namespace
+
 int main() {
+    std::signal(SIGINT, handle_signal);
+    std::signal(SIGTERM, handle_signal);
+
     ashos_command_t cmd = ashos::default_command();
     ashos_telemetry_t telemetry{};
     telemetry.life_support.o2_percent = 2050;
@@ -61,14 +72,17 @@ int main() {
     telemetry.thermal.skin_temp_c = 2000;
     telemetry.thermal.radiator_flow = 1200;
 
-    for (int i = 0; i < 5; ++i) {
+    int tick = 0;
+    while (g_running) {
         ashos::run_once(telemetry, cmd);
-        std::cout << "[tick " << i << "] O2=" << telemetry.life_support.o2_percent
+        std::cout << "[tick " << tick << "] O2=" << telemetry.life_support.o2_percent
                   << " temp=" << telemetry.life_support.temperature_c
                   << " SOC=" << telemetry.power.battery_soc
                   << " watchdog=" << static_cast<int>(telemetry.watchdog_status) << "\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        ++tick;
     }
 
+    std::cout << "[engine] shutdown after " << tick << " ticks" << std::endl;
     return 0;
 }
