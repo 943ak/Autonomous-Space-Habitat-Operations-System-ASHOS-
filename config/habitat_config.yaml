@@ -1,0 +1,10 @@
+life_support:
+  target_o2_percent: 21.0
+  target_pressure_pa: 101325
+  target_humidity_percent: 45.0
+  target_temperature_c: 22.0
+power:
+  battery_capacity_wh: 200000
+  solar_arrays: 2
+thermal:
+  radiator_area_m2: 15

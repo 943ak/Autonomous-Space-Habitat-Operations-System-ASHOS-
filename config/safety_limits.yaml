@@ -1,0 +1,11 @@
+life_support:
+  o2_percent: [19.0, 23.5]
+  pressure_pa: [95000, 105000]
+  humidity_percent: [30.0, 60.0]
+  temperature_c: [-5.0, 30.0]
+power:
+  charge_limit_w: [0, 20000]
+  discharge_limit_w: [0, 15000]
+thermal:
+  radiator_valve: [0, 100]
+  heater_level: [0, 100]
